@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sonoo Kannaujiya — Performance Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:rgba(201,168,76,0.15);
+  --bg:#0D0D0F;--bg2:#141416;--bg3:#1C1C1F;
+  --border:rgba(255,255,255,0.08);--text:#F0EDE8;--muted:#8A877F;--teal:#3DCFB6;
+  --pad-x: clamp(20px, 5vw, 60px);
+  --max-w: 1100px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(13,13,15,0.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 var(--pad-x);
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600;letter-spacing:0.03em;text-decoration:none}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  display:none;position:fixed;top:56px;left:0;right:0;bottom:0;
+  background:rgba(13,13,15,0.98);backdrop-filter:blur(16px);
+  z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:36px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:22px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+
+/* ─── HERO ─── */
+.hero{
+  padding:clamp(60px,8vw,100px) var(--pad-x) clamp(50px,6vw,80px);
+  max-width:var(--max-w);margin:0 auto;
+  display:grid;grid-template-columns:1fr 300px;gap:clamp(32px,5vw,60px);align-items:start;
+}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:18px;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,6vw,68px);line-height:1.05;font-weight:600;
+  margin-bottom:22px;
+}
+.hero h1 span{color:var(--gold)}
+.hero-bio{color:var(--muted);font-size:clamp(14px,1.8vw,16px);line-height:1.8;margin-bottom:32px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.tag{padding:5px 13px;border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--muted)}
+.tag.hi{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn-p{padding:11px 26px;background:var(--gold);color:#0D0D0F;border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;transition:background .2s;white-space:nowrap}
+.btn-p:hover{background:var(--gold-light)}
+.btn-s{padding:11px 26px;border:1px solid var(--border);color:var(--text);border-radius:6px;font-weight:500;font-size:13px;text-decoration:none;transition:border-color .2s;white-space:nowrap}
+.btn-s:hover{border-color:var(--gold)}
+
+/* Hero stat card */
+.hero-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px}
+.hsl{font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:4px}
+.hsv{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,42px);font-weight:600;color:var(--gold);line-height:1}
+.hsv span{color:var(--gold-light);font-size:0.65em}
+.hsd{font-size:12px;color:var(--muted);margin-top:2px}
+.hdiv{height:1px;background:var(--border)}
+
+/* ─── GENERIC SECTION ─── */
+.sec{padding:clamp(50px,6vw,80px) var(--pad-x);max-width:var(--max-w);margin:0 auto}
+.divider{height:1px;background:var(--border);max-width:var(--max-w);margin:0 auto}
+.sec-label{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+  font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::before{content:'';display:block;width:18px;height:1px;background:var(--gold)}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,4vw,44px);font-weight:600;margin-bottom:clamp(28px,4vw,48px);line-height:1.1;
+}
+
+/* ─── METRICS GRID ─── */
+.metrics-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+}
+.mc{background:var(--bg2);padding:clamp(20px,3vw,36px) clamp(16px,2.5vw,32px);position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.mc:hover::before{opacity:1}
+.mc .lbl{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.mc .val{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:600;color:var(--text);line-height:1;margin-bottom:5px}
+.mc .val span{color:var(--gold)}
+.mc .sub{font-size:12px;color:var(--muted)}
+
+/* ─── TABLE ─── */
+.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:600px}
+thead tr{background:var(--bg3)}
+thead th{padding:13px 16px;text-align:left;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:500;white-space:nowrap;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(201,168,76,0.04)}
+tbody td{padding:12px 16px;font-size:13px}
+.td-r{color:var(--muted);font-size:12px}
+.td-n{font-weight:500}
+.td-sp{color:var(--gold);font-weight:500}
+.cpl-b{display:inline-block;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:500}
+.cpl-low{background:rgba(61,207,182,0.12);color:#3DCFB6}
+.cpl-mid{background:rgba(201,168,76,0.12);color:var(--gold)}
+.cpl-hi{background:rgba(255,255,255,0.06);color:var(--muted)}
+.lbar-wrap{display:flex;align-items:center;gap:8px}
+.lbar{height:4px;border-radius:2px;background:var(--gold);min-width:3px}
+
+/* ─── CHARTS ─── */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,2.5vw,28px)}
+.ct{font-size:14px;font-weight:500;margin-bottom:3px}
+.cs{font-size:12px;color:var(--muted);margin-bottom:20px}
+
+/* ─── BRANDS ─── */
+.brands-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.brand-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 18px;display:flex;align-items:center;gap:14px;transition:border-color .2s}
+.brand-card:hover{border-color:rgba(201,168,76,0.3)}
+.b-icon{width:42px;height:42px;border-radius:10px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--gold);flex-shrink:0}
+.b-name{font-weight:500;font-size:14px}
+.b-desc{font-size:12px;color:var(--muted);margin-top:2px}
+.brands-meta{margin-top:20px;padding:18px 22px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;display:flex;gap:clamp(20px,4vw,40px);flex-wrap:wrap}
+.bm-item .bm-l{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.bm-item .bm-v{font-size:14px}
+
+/* ─── SKILLS ─── */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.sg{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px}
+.sg-title{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:6px 13px;border:1px solid var(--border);border-radius:100px;font-size:12px}
+.pill.core{border-color:rgba(201,168,76,0.3);background:var(--gold-dim);color:var(--gold-light)}
+
+/* ─── TIMELINE ─── */
+.timeline{display:flex;flex-direction:column}
+.tl-item{display:grid;grid-template-columns:130px 1px 1fr;gap:0 28px;padding-bottom:36px}
+.tl-item:last-child{padding-bottom:0}
+.tl-date{text-align:right;padding-top:4px;font-size:12px;color:var(--muted);line-height:1.5}
+.tl-line{background:var(--border);position:relative}
+.tl-line::before{content:'';position:absolute;top:6px;left:-4px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.tl-role{font-weight:500;font-size:15px;margin-bottom:3px}
+.tl-co{font-size:13px;color:var(--gold);margin-bottom:8px}
+.tl-desc{font-size:13px;color:var(--muted);line-height:1.75}
+
+/* ─── CERT / EDU ─── */
+.ce-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.ce-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:17px 19px;display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.ce-card:last-child{margin-bottom:0}
+.ce-icon{width:36px;height:36px;border-radius:8px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gold);font-weight:700;flex-shrink:0;font-family:'Cormorant Garamond',serif}
+.ce-name{font-size:13px;font-weight:500}
+.ce-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ─── FOOTER ─── */
+footer{
+  border-top:1px solid var(--border);
+  padding:clamp(28px,4vw,40px) var(--pad-x);
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:var(--max-w);margin:0 auto;flex-wrap:wrap;gap:20px;
+}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600}
+.f-note{font-size:12px;color:var(--muted);margin-top:4px}
+.f-contacts{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.f-contacts a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+.f-contacts a:hover{color:var(--gold)}
+
+/* ─── RESPONSIVE: TABLET (≤900px) ─── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-card{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .hdiv{display:none}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .charts-grid{grid-template-columns:1fr}
+  .brands-grid{grid-template-columns:repeat(2,1fr)}
+  .skills-grid{grid-template-columns:1fr}
+  .ce-grid{grid-template-columns:1fr}
+  .footer-contacts{align-items:flex-start}
+}
+
+/* ─── RESPONSIVE: MOBILE (≤600px) ─── */
+@media(max-width:600px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero{padding-top:48px}
+  .hero-card{grid-template-columns:1fr}
+  .hdiv{display:block}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .mc .val{font-size:32px}
+  .brands-grid{grid-template-columns:1fr}
+  .tl-item{grid-template-columns:80px 1px 1fr;gap:0 16px}
+  .tl-date{font-size:11px}
+  footer{flex-direction:column;align-items:flex-start}
+  .f-contacts{align-items:flex-start}
+  .ce-grid{gap:20px}
+  .cta-row{flex-direction:column;align-items:flex-start}
+  .btn-p,.btn-s{width:100%;text-align:center;padding:13px 20px}
+  .brands-meta{flex-direction:column;gap:14px}
+}
+
+/* ─── RESPONSIVE: SMALL MOBILE (≤380px) ─── */
+@media(max-width:380px){
+  .metrics-grid{grid-template-columns:1fr}
+  .mc{padding:20px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">SK</a>
+  <div class="nav-links">
+    <a href="#metrics">Metrics</a>
+    <a href="#campaigns">Campaigns</a>
+    <a href="#brands">Brands</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+  </div>
+  <button class="hamburger" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#metrics" class="mm-link">Metrics</a>
+  <a href="#campaigns" class="mm-link">Campaigns</a>
+  <a href="#brands" class="mm-link">Brands</a>
+  <a href="#skills" class="mm-link">Skills</a>
+  <a href="#experience" class="mm-link">Experience</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Performance Marketing Portfolio</div>
+    <h1>Sonoo<br><span>Kannaujiya</span></h1>
+    <p class="hero-bio">
+      Meta Ads Specialist with 3+ years of agency experience across real estate &amp; luxury residential.
+      Managed ₹1.91 Cr+ in ad spend across 16 accounts, delivering 27,000+ qualified leads for
+      Embassy, Godrej, Sobha, Prestige, Puravankara &amp; Mahindra Lifespaces.
+    </p>
+    <div class="tags">
+      <span class="tag hi">Meta Ads</span>
+      <span class="tag hi">Real Estate Lead Gen</span>
+      <span class="tag">Bangalore · Hyderabad · Chennai</span>
+      <span class="tag">₹1 Cr+ Budget Management</span>
+      <span class="tag">Luxury Residential</span>
+      <span class="tag">Channel Partner Model</span>
+    </div>
+    <div class="cta-row">
+      <a href="mailto:sonuchaudhary648@gmail.com" class="btn-p">Get in Touch</a>
+      <a href="#campaigns" class="btn-s">View Campaign Data</a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div>
+      <div class="hsl">Total Ad Spend Managed</div>
+      <div class="hsv">₹1.91<span>Cr+</span></div>
+      <div class="hsd">Aug 2025 – Apr 2026</div>
+    </div>
+    <div class="hdiv"></div>
+    <div>
+      <div class="hsl">Total Leads Generated</div>
+      <div class="hsv">27,023</div>
+      <div class="hsd">Across 16 real estate ad accounts</div>
+    </div>
+    <div class="hdiv"></div>
+    <div>
+      <div class="hsl">Avg Cost Per Lead</div>
+      <div class="hsv">₹707</div>
+      <div class="hsd">Premium properties ₹1.5 Cr+ segment</div>
+    </div>
+    <div class="hdiv"></div>
+    <div>
+      <div class="hsl">Total Reach</div>
+      <div class="hsv">1.93<span>Cr</span></div>
+      <div class="hsd">8.62 Cr impressions served</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- METRICS -->
+<section id="metrics" class="sec">
+  <div class="sec-label">Campaign Overview</div>
+  <div class="sec-title">Results by the Numbers</div>
+  <div class="metrics-grid">
+    <div class="mc">
+      <div class="lbl">Total Ad Spend</div>
+      <div class="val">₹1.91<span>Cr</span></div>
+      <div class="sub">Aug 2, 2025 – Apr 24, 2026</div>
+    </div>
+    <div class="mc">
+      <div class="lbl">Leads Generated</div>
+      <div class="val">27,023</div>
+      <div class="sub">Across 16 active ad accounts</div>
+    </div>
+    <div class="mc">
+      <div class="lbl">Avg. Cost Per Lead</div>
+      <div class="val">₹<span>707</span></div>
+      <div class="sub">Best CPL achieved: ₹211</div>
+    </div>
+    <div class="mc">
+      <div class="lbl">Total Impressions</div>
+      <div class="val">8.62<span>Cr</span></div>
+      <div class="sub">Avg. frequency 4.47×</div>
+    </div>
+    <div class="mc">
+      <div class="lbl">Total Reach</div>
+      <div class="val">1.93<span>Cr</span></div>
+      <div class="sub">Unique users reached</div>
+    </div>
+    <div class="mc">
+      <div class="lbl">Total Clicks</div>
+      <div class="val">5.59<span>L</span></div>
+      <div class="sub">Avg. CTR 0.65% · CPC ₹34</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CHARTS -->
+<section class="sec" style="padding-top:50px;padding-bottom:36px">
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="ct">Leads by Account</div>
+      <div class="cs">Top 10 accounts · Aug 2025 – Apr 2026</div>
+      <div style="position:relative;height:clamp(260px,38vw,340px)">
+        <canvas id="leadsChart" role="img" aria-label="Horizontal bar chart showing leads per ad account. Keya Homes leads with 6693 leads.">Keya Homes 6693, City Prop 5258, Flatcon 2733, Flatcon New 2547</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">Spend Distribution</div>
+      <div class="cs">Budget allocation across accounts (₹ Lakhs)</div>
+      <div style="position:relative;height:clamp(260px,38vw,340px)">
+        <canvas id="spendChart" role="img" aria-label="Doughnut chart showing ad spend distribution across accounts. Keya Homes has highest spend at 35.6%.">Keya Homes 35.6%, City Prop 10.7%, Flatcon 7.9%</canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS TABLE -->
+<section id="campaigns" class="sec" style="padding-top:36px">
+  <div class="sec-label">All Campaign Accounts</div>
+  <div class="sec-title">Account-wise Performance</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Account</th><th>Ad Spend</th>
+          <th>Leads</th><th>Cost / Lead</th>
+          <th>Reach</th><th>Impressions</th><th>CTR</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:14px;padding-left:4px">
+    Period: Aug 2, 2025 – Apr 24, 2026 · Source: Meta Ads Manager · All accounts managed at Digibrat Virtual Solutions Pvt. Ltd.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- BRANDS -->
+<section id="brands" class="sec">
+  <div class="sec-label">Developer Brands & Clients</div>
+  <div class="sec-title">Projects & Verticals</div>
+  <div class="brands-grid">
+    <div class="brand-card"><div class="b-icon">G</div><div><div class="b-name">Godrej Properties</div><div class="b-desc">Premium residential · Bangalore</div></div></div>
+    <div class="brand-card"><div class="b-icon">S</div><div><div class="b-name">Sobha Limited</div><div class="b-desc">Luxury housing · Bangalore</div></div></div>
+    <div class="brand-card"><div class="b-icon">P</div><div><div class="b-name">Prestige Group</div><div class="b-desc">Premium residential · South India</div></div></div>
+    <div class="brand-card"><div class="b-icon">E</div><div><div class="b-name">Embassy Group</div><div class="b-desc">Luxury apartments · Bangalore</div></div></div>
+    <div class="brand-card"><div class="b-icon">Pv</div><div><div class="b-name">Puravankara</div><div class="b-desc">Residential projects · Bangalore</div></div></div>
+    <div class="brand-card"><div class="b-icon">M</div><div><div class="b-name">Mahindra Lifespaces</div><div class="b-desc">Premium housing · Pan South India</div></div></div>
+  </div>
+  <div class="brands-meta">
+    <div class="bm-item"><div class="bm-l">Market</div><div class="bm-v">Luxury Residential · ₹1.5 Cr – ₹10 Cr+</div></div>
+    <div class="bm-item"><div class="bm-l">Cities</div><div class="bm-v">Bangalore · Hyderabad · Chennai</div></div>
+    <div class="bm-item"><div class="bm-l">Model</div><div class="bm-v">Channel Partner (CP) Agency</div></div>
+    <div class="bm-item"><div class="bm-l">Accounts</div><div class="bm-v">16 Active Ad Accounts</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="sec">
+  <div class="sec-label">Core Competencies</div>
+  <div class="sec-title">Skills & Tools</div>
+  <div class="skills-grid">
+    <div class="sg">
+      <div class="sg-title">Meta Advertising</div>
+      <div class="pills">
+        <span class="pill core">Meta Ads Manager</span>
+        <span class="pill core">Lead Gen Campaigns</span>
+        <span class="pill core">Audience Research</span>
+        <span class="pill core">Lookalike Audiences</span>
+        <span class="pill">Retargeting</span>
+        <span class="pill">A/B Testing</span>
+        <span class="pill">Campaign Scaling</span>
+        <span class="pill">Budget Allocation</span>
+        <span class="pill">Meta Pixel & CAPI</span>
+        <span class="pill">Creative Strategy</span>
+      </div>
+    </div>
+    <div class="sg">
+      <div class="sg-title">Analytics & Reporting</div>
+      <div class="pills">
+        <span class="pill core">Google Analytics 4</span>
+        <span class="pill core">Looker Studio</span>
+        <span class="pill">Google Ads</span>
+        <span class="pill">Google Tag Manager</span>
+        <span class="pill">UTM Tracking</span>
+        <span class="pill">CPL Analysis</span>
+        <span class="pill">Lead Quality Audit</span>
+        <span class="pill">Performance Reporting</span>
+        <span class="pill">Microsoft Excel</span>
+      </div>
+    </div>
+    <div class="sg">
+      <div class="sg-title">Real Estate Domain</div>
+      <div class="pills">
+        <span class="pill core">Premium Property Marketing</span>
+        <span class="pill core">CP Portal Workflow</span>
+        <span class="pill">Lead Quality Scoring</span>
+        <span class="pill">Workable Lead Tracking</span>
+        <span class="pill">RNR & Junk Analysis</span>
+        <span class="pill">NRI & HNI Targeting</span>
+        <span class="pill">Micro-market Targeting</span>
+      </div>
+    </div>
+    <div class="sg">
+      <div class="sg-title">Automation & Growth</div>
+      <div class="pills">
+        <span class="pill core">AI-Augmented Marketing</span>
+        <span class="pill core">Prompt Engineering</span>
+        <span class="pill">Make.com</span>
+        <span class="pill">Ad Copy Writing</span>
+        <span class="pill">Creative Briefing</span>
+        <span class="pill">Canva</span>
+        <span class="pill">CRM Systems</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec">
+  <div class="sec-label">Work History</div>
+  <div class="sec-title">Professional Experience</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">Aug 2025<br>– Present</div>
+      <div class="tl-line"></div>
+      <div>
+        <div class="tl-role">Meta Ads Specialist</div>
+        <div class="tl-co">Digibrat Virtual Solutions Pvt. Ltd. · Bangalore</div>
+        <div class="tl-desc">Managing Meta Ads campaigns for 5+ luxury real estate projects — ₹1.91 Cr+ total ad spend across 16 accounts in 8 months, generating 27,023 leads at ₹707 average CPL for Embassy, Godrej, Sobha, Prestige, Puravankara, and Mahindra Lifespaces. Build audience frameworks using Lookalike Audiences, interest-based and exclusion targeting. Manage Facebook Pixel and CAPI setup, run A/B tests every 2 weeks, and maintain Looker Studio dashboards for weekly management reviews covering CPL, ROAS, CTR, CPC, and lead quality.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Dec 2024<br>– Jul 2025</div>
+      <div class="tl-line"></div>
+      <div>
+        <div class="tl-role">Performance Marketer & Designer</div>
+        <div class="tl-co">Radiant Kaira – Skyrise Developers · Bangalore</div>
+        <div class="tl-desc">Managed Meta Ads for luxury residential projects — campaign setup, audience strategy, daily optimisation, and lead delivery. Built separate audience segments for NRI and local HNI buyers with tailored creatives and CTAs. Improved workable lead ratio from 45% to 62% through exclusion targeting and interest-based segmentation. Managed bid strategies: Cost Cap for lead quality, Lowest Cost for scale, Bid Cap for budget-sensitive phases.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Jan 2023<br>– Nov 2024</div>
+      <div class="tl-line"></div>
+      <div>
+        <div class="tl-role">Social Media & Ads Executive</div>
+        <div class="tl-co">Building Ghar – Nirman Builders · India</div>
+        <div class="tl-desc">Ran Meta Ads campaigns for real estate lead generation targeting regional and pan-India audiences. Built Lookalike Audiences to reach NRI investors and high-net-worth buyers. Reduced CPL by 15% in 3 months through audience refinement, exclusion targeting, and creative rotation. Executed retargeting campaigns for website visitors, video viewers, and lead form engagers. Tracked daily performance in Meta Ads Manager and GA4; shifted budgets based on CPL and CTR signals.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS & EDUCATION -->
+<section class="sec" style="padding-top:50px;padding-bottom:60px">
+  <div class="ce-grid">
+    <div>
+      <div class="sec-label" style="margin-bottom:8px">Certifications</div>
+      <div class="ce-card">
+        <div class="ce-icon">M</div>
+        <div><div class="ce-name">Meta Blueprint – Digital Marketing Associate</div><div class="ce-sub">Meta · 2023</div></div>
+      </div>
+      <div class="ce-card">
+        <div class="ce-icon">G</div>
+        <div><div class="ce-name">Google Analytics 4 Certification</div><div class="ce-sub">UT Digital Media · 2023</div></div>
+      </div>
+      <div class="ce-card">
+        <div class="ce-icon">U</div>
+        <div><div class="ce-name">UI/UX Design Fundamentals</div><div class="ce-sub">Internshala · 2024</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-label" style="margin-bottom:8px">Education & Languages</div>
+      <div class="ce-card" style="flex-direction:column;align-items:flex-start;gap:6px">
+        <div class="ce-name">Bachelor of Commerce (B.Com)</div>
+        <div class="ce-sub">VBSPU University, Uttar Pradesh · 2016 – 2018</div>
+      </div>
+      <div class="ce-card" style="flex-direction:column;align-items:flex-start;gap:10px">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Languages</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="padding:5px 13px;border:1px solid rgba(201,168,76,0.3);border-radius:100px;font-size:12px;color:var(--gold)">Hindi (Native)</span>
+          <span style="padding:5px 13px;border:1px solid var(--border);border-radius:100px;font-size:12px">English (Professional)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <div>
+    <div class="f-name">Sonoo Kannaujiya</div>
+    <div class="f-note">Meta Ads Specialist · Bangalore, India</div>
+  </div>
+  <div class="f-contacts">
+    <a href="tel:+918423000654">+91-8423000654</a>
+    <a href="mailto:sonuchaudhary648@gmail.com">sonuchaudhary648@gmail.com</a>
+    <a href="https://linkedin.com/in/sonoo-kannaujiya" target="_blank">linkedin.com/in/sonoo-kannaujiya</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+/* ── Hamburger ── */
+const ham = document.getElementById('ham');
+const mm  = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => {
+  ham.classList.toggle('open');
+  mm.classList.toggle('open');
+  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.mm-link').forEach(a => {
+  a.addEventListener('click', () => {
+    ham.classList.remove('open');
+    mm.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ── Data ── */
+const accounts = [
+  {name:"Keya Homes Pvt Ltd",    spend:6807155.68, leads:6693, cpl:1017.06, reach:7615752,  imp:36327084, ctr:0.61},
+  {name:"City Prop Realtors",    spend:2038618.77, leads:5258, cpl:387.72,  reach:2986152,  imp:9134786,  ctr:0.71},
+  {name:"Flatcon",               spend:1518004.01, leads:2733, cpl:555.44,  reach:2189294,  imp:7576088,  ctr:0.70},
+  {name:"Flatcon New",           spend:536835.03,  leads:2547, cpl:210.77,  reach:629227,   imp:2571771,  ctr:0.83},
+  {name:"Full Basket Bangalore", spend:1332293.21, leads:1120, cpl:1189.55, reach:1164737,  imp:3403653,  ctr:0.98},
+  {name:"Full Basket Hyderabad", spend:1246654.11, leads:1350, cpl:923.45,  reach:2817032,  imp:8287087,  ctr:0.46},
+  {name:"Estatic Realty Pvt Ltd",spend:1206136.17, leads:1840, cpl:655.51,  reach:630720,   imp:2502526,  ctr:0.93},
+  {name:"Dwelling Ventures",     spend:1033417.82, leads:1604, cpl:644.28,  reach:343841,   imp:1475589,  ctr:1.12},
+  {name:"Damani Consulting Blr", spend:993588.41,  leads:998,  cpl:995.58,  reach:1006421,  imp:2379743,  ctr:0.60},
+  {name:"BrickandFloor Ads",     spend:931943.05,  leads:1299, cpl:717.43,  reach:2925998,  imp:6219861,  ctr:0.54},
+  {name:"VG Consulting",         spend:485092.35,  leads:352,  cpl:1378.10, reach:904145,   imp:1983246,  ctr:0.55},
+  {name:"Homes and Earth",       spend:359763.43,  leads:354,  cpl:1016.28, reach:284614,   imp:762939,   ctr:0.59},
+  {name:"Premier Real Estate",   spend:261407.21,  leads:356,  cpl:734.29,  reach:532946,   imp:1014630,  ctr:0.64},
+  {name:"Estatic Realty Pvt Ltd2",spend:218173.58, leads:349,  cpl:625.14,  reach:996159,   imp:2063611,  ctr:0.66},
+  {name:"Estatic Realty",        spend:93220.34,   leads:124,  cpl:751.78,  reach:269138,   imp:376222,   ctr:0.52},
+  {name:"Damani Consulting",     spend:43954.51,   leads:46,   cpl:955.53,  reach:103960,   imp:150835,   ctr:0.56},
+];
+
+const maxL = Math.max(...accounts.map(a=>a.leads));
+const fmtI = n => n.toLocaleString('en-IN');
+const fmtS = n => n>=1e7?'₹'+(n/1e7).toFixed(2)+' Cr':n>=1e5?'₹'+(n/1e5).toFixed(1)+'L':'₹'+fmtI(Math.round(n));
+const cplCls = v => v<600?'cpl-low':v<900?'cpl-mid':'cpl-hi';
+
+/* ── Table ── */
+const tbody = document.getElementById('tableBody');
+[...accounts].sort((a,b)=>b.leads-a.leads).forEach((a,i)=>{
+  const bw = Math.max(3, Math.round((a.leads/maxL)*80));
+  tbody.innerHTML+=`<tr>
+    <td class="td-r">${i+1}</td>
+    <td class="td-n">${a.name}</td>
+    <td class="td-sp">${fmtS(a.spend)}</td>
+    <td><div class="lbar-wrap"><div class="lbar" style="width:${bw}px"></div><strong>${fmtI(a.leads)}</strong></div></td>
+    <td><span class="cpl-b ${cplCls(a.cpl)}">₹${Math.round(a.cpl)}</span></td>
+    <td>${fmtI(a.reach)}</td>
+    <td>${fmtI(a.imp)}</td>
+    <td>${a.ctr.toFixed(2)}%</td>
+  </tr>`;
+});
+
+/* ── Charts ── */
+const top10 = [...accounts].sort((a,b)=>b.leads-a.leads).slice(0,10);
+new Chart(document.getElementById('leadsChart'),{
+  type:'bar',
+  data:{
+    labels:top10.map(a=>a.name.length>16?a.name.slice(0,16)+'…':a.name),
+    datasets:[{label:'Leads',data:top10.map(a=>a.leads),backgroundColor:'rgba(201,168,76,0.75)',borderColor:'#C9A84C',borderWidth:1,borderRadius:4}]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#8A877F',font:{size:10},callback:v=>v.toLocaleString('en-IN')}},
+      y:{grid:{display:false},ticks:{color:'#F0EDE8',font:{size:10}}}
+    }
+  }
+});
+
+const sp8=[...accounts].sort((a,b)=>b.spend-a.spend).slice(0,8);
+const rest=accounts.sort((a,b)=>b.spend-a.spend).slice(8).reduce((s,a)=>s+a.spend,0);
+new Chart(document.getElementById('spendChart'),{
+  type:'doughnut',
+  data:{
+    labels:[...sp8.map(a=>a.name.length>14?a.name.slice(0,14)+'…':a.name),'Others'],
+    datasets:[{
+      data:[...sp8.map(a=>Math.round(a.spend/1000)),Math.round(rest/1000)],
+      backgroundColor:['#C9A84C','#E8C97A','#A0823C','#6E5A29','#3DCFB6','#2DA894','#8E7250','#B59060','#555'],
+      borderColor:'#141416',borderWidth:2
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>`₹${ctx.parsed.toLocaleString('en-IN')}K`}}
+    },
+    cutout:'65%'
+  }
+});
+</script>
+</body>
+</html>
