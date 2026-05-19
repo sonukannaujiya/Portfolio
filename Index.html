@@ -4,229 +4,229 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sonoo Kannaujiya — Performance Marketing Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:rgba(201,168,76,0.15);
-  --bg:#0D0D0F;--bg2:#141416;--bg3:#1C1C1F;
-  --border:rgba(255,255,255,0.08);--text:#F0EDE8;--muted:#8A877F;--teal:#3DCFB6;
-  --pad-x: clamp(20px, 5vw, 60px);
-  --max-w: 1100px;
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:rgba(201,168,76,0.12);
+  --bg:#09090B;--bg2:#121214;--bg3:#1A1A1E;
+  --border:rgba(255,255,255,0.06);--text:#F3F1ED;--muted:#94918B;--teal:#3DCFB6;
+  --pad-x: clamp(24px, 6vw, 64px);
+  --max-w: 1200px;
 }
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden}
+html{scroll-behavior:initial}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* ─── NAV ─── */
+/* ─── AMBIENT BACKGROUND GLOW ─── */
+.glow-bg {
+  position: fixed;top: -10%;left: -10%;width: 120%;height: 120%;
+  background: radial-gradient(circle at 15% 15%, rgba(201,168,76,0.05) 0%, transparent 40%),
+              radial-gradient(circle at 85% 75%, rgba(61,207,182,0.03) 0%, transparent 40%);
+  z-index: -1;pointer-events: none;
+}
+
+/* ─── NAVIGATION ─── */
 nav{
   position:sticky;top:0;z-index:200;
-  background:rgba(13,13,15,0.95);backdrop-filter:blur(12px);
+  background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   padding:0 var(--pad-x);
   display:flex;align-items:center;justify-content:space-between;
-  height:56px;
+  height:64px;transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600;letter-spacing:0.03em;text-decoration:none}
-.nav-links{display:flex;gap:28px}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color .2s}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);font-weight:700;letter-spacing:0.02em;text-decoration:none}
+.nav-links{display:flex;gap:32px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;transition:color .3s, transform .2s;position:relative;padding:4px 0}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
 .nav-links a:hover{color:var(--text)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{
-  display:none;position:fixed;top:56px;left:0;right:0;bottom:0;
-  background:rgba(13,13,15,0.98);backdrop-filter:blur(16px);
-  z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:36px;
-}
-.mobile-menu.open{display:flex}
-.mobile-menu a{color:var(--text);text-decoration:none;font-size:22px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color .2s}
-.mobile-menu a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
 
-/* ─── HERO ─── */
+.hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:10px;border:none;background:none;z-index:201}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s ease-in-out}
+.hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:translateX(-10px)}
+.hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-44deg)}
+
+.mobile-menu{
+  position:fixed;top:0;left:0;width:100%;height:100vh;
+  background:rgba(9,9,11,0.98);backdrop-filter:blur(24px);
+  z-index:199;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  opacity:0;pointer-events:none;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;transform:translateY(20px);transition:transform 0.4s, color 0.2s}
+.mobile-menu.open a{transform:translateY(0)}
+
+/* ─── HERO SECTION ─── */
 .hero{
-  padding:clamp(60px,8vw,100px) var(--pad-x) clamp(50px,6vw,80px);
+  padding:clamp(80px,10vw,140px) var(--pad-x) clamp(60px,8vw,100px);
   max-width:var(--max-w);margin:0 auto;
-  display:grid;grid-template-columns:1fr 300px;gap:clamp(32px,5vw,60px);align-items:start;
+  display:grid;grid-template-columns:1.2fr 0.8fr;gap:clamp(40px,6vw,80px);align-items:center;
 }
 .hero-eyebrow{
-  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--gold);font-weight:500;margin-bottom:18px;
-  display:flex;align-items:center;gap:12px;
+  font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:14px;
 }
-.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
-.hero h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(42px,6vw,68px);line-height:1.05;font-weight:600;
-  margin-bottom:22px;
-}
-.hero h1 span{color:var(--gold)}
-.hero-bio{color:var(--muted);font-size:clamp(14px,1.8vw,16px);line-height:1.8;margin-bottom:32px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
-.tag{padding:5px 13px;border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--muted)}
-.tag.hi{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap}
-.btn-p{padding:11px 26px;background:var(--gold);color:#0D0D0F;border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;transition:background .2s;white-space:nowrap}
-.btn-p:hover{background:var(--gold-light)}
-.btn-s{padding:11px 26px;border:1px solid var(--border);color:var(--text);border-radius:6px;font-weight:500;font-size:13px;text-decoration:none;transition:border-color .2s;white-space:nowrap}
-.btn-s:hover{border-color:var(--gold)}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,76px);line-height:1.02;font-weight:600;margin-bottom:24px;letter-spacing:-0.01em}
+.hero h1 span{color:var(--gold);font-style:italic;font-weight:400}
+.hero-bio{color:var(--muted);font-size:clamp(15px,1.8vw,17px);line-height:1.8;margin-bottom:36px;font-weight:300}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:42px}
+.tag{padding:6px 16px;border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--muted);background:rgba(255,255,255,0.02);transition:all 0.3s}
+.tag.hi{border-color:rgba(201,168,76,0.25);color:var(--gold-light);background:var(--gold-dim)}
+.tag:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
 
-/* Hero stat card */
-.hero-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px}
-.hsl{font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:4px}
-.hsv{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,42px);font-weight:600;color:var(--gold);line-height:1}
-.hsv span{color:var(--gold-light);font-size:0.65em}
-.hsd{font-size:12px;color:var(--muted);margin-top:2px}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap}
+.btn-p, .btn-s{padding:14px 32px;border-radius:8px;font-weight:600;font-size:13px;text-decoration:none;transition:all .3s cubic-bezier(0.16, 1, 0.3, 1);white-space:nowrap;position:relative;overflow:hidden}
+.btn-p{background:var(--gold);color:#09090B}
+.btn-p:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 20px rgba(201,168,76,0.15)}
+.btn-s{border:1px solid var(--border);color:var(--text);background:rgba(255,255,255,0.01)}
+.btn-s:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-2px)}
+
+/* Hero Stat Card */
+.hero-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:24px;box-shadow:0 30px 60px rgba(0,0,0,0.2);position:relative}
+.hero-card::after{content:'';position:absolute;inset:0;border-radius:24px;border:1px solid transparent;background:linear-gradient(135deg,rgba(201,168,76,0.15),transparent) border-box;mask:linear-gradient(#fff #fff) padding-box,linear-gradient(#fff #fff);-webkit-mask-composite:destination-out;mask-composite:exclude;pointer-events:none}
+.hsl{font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:6px}
+.hsv{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,46px);font-weight:600;color:var(--text);line-height:1}
+.hsv span{color:var(--gold);font-size:0.7em;margin-left:2px}
+.hsd{font-size:12px;color:var(--muted);margin-top:4px;font-weight:300}
 .hdiv{height:1px;background:var(--border)}
 
-/* ─── GENERIC SECTION ─── */
-.sec{padding:clamp(50px,6vw,80px) var(--pad-x);max-width:var(--max-w);margin:0 auto}
-.divider{height:1px;background:var(--border);max-width:var(--max-w);margin:0 auto}
-.sec-label{
-  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
-  font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:10px;
-}
-.sec-label::before{content:'';display:block;width:18px;height:1px;background:var(--gold)}
-.sec-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(30px,4vw,44px);font-weight:600;margin-bottom:clamp(28px,4vw,48px);line-height:1.1;
-}
+/* ─── GENERAL SECTIONS ─── */
+.sec{padding:clamp(70px,8vw,110px) var(--pad-x);max-width:var(--max-w);margin:0 auto}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);max-width:var(--max-w);margin:0 auto}
+.sec-label{font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,48px);font-weight:600;margin-bottom:clamp(36px,5vw,56px);line-height:1.15;letter-spacing:-0.01em}
 
 /* ─── METRICS GRID ─── */
-.metrics-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;
-}
-.mc{background:var(--bg2);padding:clamp(20px,3vw,36px) clamp(16px,2.5vw,32px);position:relative;overflow:hidden}
-.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mc{background:var(--bg2);padding:clamp(24px,3vw,40px);border-radius:20px;border:1px solid var(--border);position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1)}
+.mc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top left, rgba(201,168,76,0.08),transparent 60%);opacity:0;transition:opacity .4s}
+.mc:hover{transform:translateY(-6px);border-color:rgba(201,168,76,0.25);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
 .mc:hover::before{opacity:1}
-.mc .lbl{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.mc .val{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:600;color:var(--text);line-height:1;margin-bottom:5px}
+.mc .lbl{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+.mc .val{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4vw,56px);font-weight:600;color:var(--text);line-height:1;margin-bottom:8px}
 .mc .val span{color:var(--gold)}
-.mc .sub{font-size:12px;color:var(--muted)}
+.mc .sub{font-size:12px;color:var(--muted);font-weight:300}
 
-/* ─── TABLE ─── */
-.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;min-width:600px}
+/* ─── PERFORMANCE TABLE ─── */
+.table-wrap{overflow-x:auto;border-radius:20px;border:1px solid var(--border);background:var(--bg2);box-shadow:0 20px 50px rgba(0,0,0,0.15);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:900px}
 thead tr{background:var(--bg3)}
-thead th{padding:13px 16px;text-align:left;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:500;white-space:nowrap;border-bottom:1px solid var(--border)}
-tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+thead th{padding:18px 24px;text-align:left;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .2s}
 tbody tr:last-child{border-bottom:none}
-tbody tr:hover{background:rgba(201,168,76,0.04)}
-tbody td{padding:12px 16px;font-size:13px}
-.td-r{color:var(--muted);font-size:12px}
-.td-n{font-weight:500}
-.td-sp{color:var(--gold);font-weight:500}
-.cpl-b{display:inline-block;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:500}
-.cpl-low{background:rgba(61,207,182,0.12);color:#3DCFB6}
-.cpl-mid{background:rgba(201,168,76,0.12);color:var(--gold)}
-.cpl-hi{background:rgba(255,255,255,0.06);color:var(--muted)}
-.lbar-wrap{display:flex;align-items:center;gap:8px}
-.lbar{height:4px;border-radius:2px;background:var(--gold);min-width:3px}
+tbody tr:hover{background:rgba(201,168,76,0.03)}
+tbody td{padding:16px 24px;font-size:14px;vertical-align:middle}
+.td-r{color:var(--muted);font-size:12px;font-weight:500}
+.td-n{font-weight:600;color:var(--text)}
+.td-sp{color:var(--gold-light);font-weight:600}
+.cpl-b{display:inline-block;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:0.02em}
+.cpl-low{background:rgba(61,207,182,0.1);color:#3DCFB6;border:1px solid rgba(61,207,182,0.15)}
+.cpl-mid{background:rgba(201,168,76,0.1);color:var(--gold-light);border:1px solid rgba(201,168,76,0.15)}
+.cpl-hi{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border)}
+.lbar-wrap{display:flex;align-items:center;gap:12px}
+.lbar{height:6px;border-radius:3px;background:linear-gradient(90deg, var(--gold-light), var(--gold));min-width:4px;box-shadow:0 1px 4px rgba(201,168,76,0.2)}
 
 /* ─── CHARTS ─── */
-.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,2.5vw,28px)}
-.ct{font-size:14px;font-weight:500;margin-bottom:3px}
-.cs{font-size:12px;color:var(--muted);margin-bottom:20px}
+.charts-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:32px;box-shadow:0 15px 35px rgba(0,0,0,0.1)}
+.ct{font-size:16px;font-weight:600;letter-spacing:-0.01em;margin-bottom:4px}
+.cs{font-size:13px;color:var(--muted);margin-bottom:28px;font-weight:300}
 
-/* ─── BRANDS ─── */
-.brands-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.brand-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 16px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
-.brand-card:hover{border-color:rgba(201,168,76,0.3)}
-.b-icon{width:40px;height:40px;border-radius:10px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--gold);flex-shrink:0}
-.b-name{font-weight:500;font-size:13px}
-.b-desc{font-size:11px;color:var(--muted);margin-top:2px}
-.brands-meta{margin-top:20px;padding:18px 22px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;display:flex;gap:clamp(20px,4vw,40px);flex-wrap:wrap}
-.bm-item .bm-l{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-.bm-item .bm-v{font-size:14px}
+/* ─── CLIENT BRANDS ─── */
+.brands-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.brand-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px;transition:all .3s cubic-bezier(0.16, 1, 0.3, 1)}
+.brand-card:hover{border-color:rgba(201,168,76,0.25);transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,0.2)}
+.b-icon{width:44px;height:44px;border-radius:12px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.15);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--gold-light);flex-shrink:0}
+.b-name{font-weight:600;font-size:14px;color:var(--text)}
+.b-desc{font-size:12px;color:var(--muted);margin-top:2px;font-weight:300}
+.brands-meta{margin-top:24px;padding:24px 32px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;display:flex;gap:clamp(24px,5vw,56px);flex-wrap:wrap}
+.bm-item .bm-l{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:500}
+.bm-item .bm-v{font-size:15px;font-weight:500;color:var(--text)}
 
-/* ─── SKILLS ─── */
-.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.sg{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px}
-.sg-title{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:500}
+/* ─── SKILLS BLOCK ─── */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.sg{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative}
+.sg-title{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;font-weight:600}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{padding:6px 13px;border:1px solid var(--border);border-radius:100px;font-size:12px}
-.pill.core{border-color:rgba(201,168,76,0.3);background:var(--gold-dim);color:var(--gold-light)}
+.pill{padding:7px 14px;border:1px solid var(--border);border-radius:100px;font-size:12px;background:rgba(255,255,255,0.01);transition:all .2s}
+.pill.core{border-color:rgba(201,168,76,0.25);background:var(--gold-dim);color:var(--gold-light);font-weight:500}
+.pill:hover{border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.03);transform:scale(1.02)}
 
-/* ─── TIMELINE ─── */
-.timeline{display:flex;flex-direction:column}
-.tl-item{display:grid;grid-template-columns:130px 1px 1fr;gap:0 28px;padding-bottom:36px}
+/* ─── PROFESSIONAL TIMELINE ─── */
+.timeline{display:flex;flex-direction:column;position:relative}
+.tl-item{display:grid;grid-template-columns:140px 1px 1fr;gap:0 36px;padding-bottom:48px;position:relative}
 .tl-item:last-child{padding-bottom:0}
-.tl-date{text-align:right;padding-top:4px;font-size:12px;color:var(--muted);line-height:1.5}
+.tl-date{text-align:right;padding-top:4px;font-size:13px;color:var(--muted);line-height:1.6;font-weight:500}
 .tl-line{background:var(--border);position:relative}
-.tl-line::before{content:'';position:absolute;top:6px;left:-4px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
-.tl-role{font-weight:500;font-size:15px;margin-bottom:3px}
-.tl-co{font-size:13px;color:var(--gold);margin-bottom:8px}
-.tl-desc{font-size:13px;color:var(--muted);line-height:1.75}
+.tl-line::before{content:'';position:absolute;top:8px;left:-5px;width:11px;height:11px;border-radius:50%;background:var(--gold);border:2px solid var(--bg);box-shadow:0 0 0 4px rgba(201,168,76,0.1);transition:all .3s}
+.tl-item:hover .tl-line::before{background:var(--text);box-shadow:0 0 0 6px rgba(255,255,255,0.1)}
+.tl-role{font-weight:600;font-size:17px;margin-bottom:4px;color:var(--text);letter-spacing:-0.01em}
+.tl-co{font-size:14px;color:var(--gold-light);margin-bottom:12px;font-weight:500}
+.tl-desc{font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;text-align:justify}
 
-/* ─── CERT / EDU ─── */
-.ce-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
-.ce-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:17px 19px;display:flex;align-items:center;gap:14px;margin-bottom:12px}
+/* ─── CERTIFICATIONS / EDUCATION ─── */
+.ce-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.ce-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px;margin-bottom:16px;transition:all 0.3s}
 .ce-card:last-child{margin-bottom:0}
-.ce-icon{width:36px;height:36px;border-radius:8px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gold);font-weight:700;flex-shrink:0;font-family:'Cormorant Garamond',serif}
-.ce-name{font-size:13px;font-weight:500}
-.ce-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.ce-card:hover{border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.02)}
+.ce-icon{width:40px;height:40px;border-radius:10px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.15);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--gold-light);font-weight:700;flex-shrink:0;font-family:'Cormorant Garamond',serif}
+.ce-name{font-size:14px;font-weight:600;color:var(--text)}
+.ce-sub{font-size:12px;color:var(--muted);margin-top:3px;font-weight:300}
 
 /* ─── FOOTER ─── */
 footer{
   border-top:1px solid var(--border);
-  padding:clamp(28px,4vw,40px) var(--pad-x);
+  padding:clamp(40px,6vw,60px) var(--pad-x);
   display:flex;align-items:center;justify-content:space-between;
-  max-width:var(--max-w);margin:0 auto;flex-wrap:wrap;gap:20px;
+  max-width:var(--max-w);margin:0 auto;flex-wrap:wrap;gap:32px;
 }
-.f-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:600}
-.f-note{font-size:12px;color:var(--muted);margin-top:4px}
-.f-contacts{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
-.f-contacts a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
-.f-contacts a:hover{color:var(--gold)}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);font-weight:700;letter-spacing:0.02em}
+.f-note{font-size:13px;color:var(--muted);margin-top:4px;font-weight:300}
+.f-contacts{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.f-contacts a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:400}
+.f-contacts a:hover{color:var(--gold-light)}
 
-/* ─── RESPONSIVE: TABLET (≤900px) ─── */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero-card{display:grid;grid-template-columns:1fr 1fr;gap:0}
+/* ─── TABLET RESPONSIVENESS (≤940px) ─── */
+@media(max-width:940px){
+  .hero{grid-template-columns:1fr;padding-top:80px}
+  .hero-card{display:grid;grid-template-columns:1fr 1fr;gap:24px 16px;padding:28px}
   .hdiv{display:none}
   .metrics-grid{grid-template-columns:repeat(2,1fr)}
-  .charts-grid{grid-template-columns:1fr}
+  .charts-grid{grid-template-columns:1fr;gap:32px}
   .brands-grid{grid-template-columns:repeat(2,1fr)}
   .skills-grid{grid-template-columns:1fr}
-  .ce-grid{grid-template-columns:1fr}
-  .footer-contacts{align-items:flex-start}
+  .ce-grid{grid-template-columns:1fr;gap:32px}
+  .f-contacts{align-items:flex-start}
 }
 
-/* ─── RESPONSIVE: MOBILE (≤600px) ─── */
-@media(max-width:600px){
+/* ─── MOBILE RESPONSIVENESS (≤640px) ─── */
+@media(max-width:640px){
   .nav-links{display:none}
   .hamburger{display:flex}
-  .hero{padding-top:48px}
-  .hero-card{grid-template-columns:1fr}
-  .hdiv{display:block}
-  .metrics-grid{grid-template-columns:1fr 1fr}
-  .mc .val{font-size:32px}
-  .brands-grid{grid-template-columns:1fr 1fr}
-  .tl-item{grid-template-columns:80px 1px 1fr;gap:0 16px}
+  nav{height:56px}
+  .hero-card{grid-template-columns:1fr;gap:20px}
+  .metrics-grid{grid-template-columns:1fr}
+  .brands-grid{grid-template-columns:1fr}
+  .tl-item{grid-template-columns:100px 1px 1fr;gap:0 20px}
   .tl-date{font-size:11px}
   footer{flex-direction:column;align-items:flex-start}
-  .f-contacts{align-items:flex-start}
-  .ce-grid{gap:20px}
-  .cta-row{flex-direction:column;align-items:flex-start}
-  .btn-p,.btn-s{width:100%;text-align:center;padding:13px 20px}
-  .brands-meta{flex-direction:column;gap:14px}
-}
-
-/* ─── RESPONSIVE: SMALL MOBILE (≤380px) ─── */
-@media(max-width:380px){
-  .metrics-grid{grid-template-columns:1fr}
-  .mc{padding:20px 18px}
-  .brands-grid{grid-template-columns:1fr}
+  .cta-row{flex-direction:column;width:100%}
+  .btn-p, .btn-s{width:100%;text-align:center;padding:15px}
+  .brands-meta{flex-direction:column;gap:16px;padding:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<div class="glow-bg"></div>
+
+<nav id="navbar">
   <a class="nav-logo" href="#">SK</a>
   <div class="nav-links">
     <a href="#metrics">Metrics</a>
@@ -240,7 +240,6 @@ footer{
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#metrics" class="mm-link">Metrics</a>
   <a href="#campaigns" class="mm-link">Campaigns</a>
@@ -249,9 +248,8 @@ footer{
   <a href="#experience" class="mm-link">Experience</a>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div>
+<section class="hero">
+  <div class="hero-left">
     <div class="hero-eyebrow">Performance Marketing Portfolio</div>
     <h1>Sonoo<br><span>Kannaujiya</span></h1>
     <p class="hero-bio">
@@ -276,34 +274,33 @@ footer{
   <div class="hero-card">
     <div>
       <div class="hsl">Total Ad Spend Managed</div>
-      <div class="hsv">₹2.00<span>Cr+</span></div>
+      <div class="hsv">₹<span class="count" data-target="2.00">0.00</span><span>Cr+</span></div>
       <div class="hsd">Aug 2, 2025 – May 8, 2026</div>
     </div>
     <div class="hdiv"></div>
     <div>
       <div class="hsl">Total Leads Generated</div>
-      <div class="hsv">28,420</div>
+      <div class="hsv"><span class="count" data-target="28420">0</span></div>
       <div class="hsd">Across 419 campaigns · 13+ brands</div>
     </div>
     <div class="hdiv"></div>
     <div>
       <div class="hsl">Avg Cost Per Lead</div>
-      <div class="hsv">₹705</div>
+      <div class="hsv">₹<span class="count" data-target="705">0</span></div>
       <div class="hsd">Premium properties ₹1.5 Cr+ segment</div>
     </div>
     <div class="hdiv"></div>
     <div>
       <div class="hsl">Total Impressions</div>
-      <div class="hsv">9.12<span>Cr</span></div>
+      <div class="hsv"><span class="count" data-target="9.12">0.00</span><span>Cr</span></div>
       <div class="hsd">3.73 Cr unique users reached</div>
     </div>
   </div>
-</div>
+</section>
 
 <div class="divider"></div>
 
-<!-- METRICS -->
-<section id="metrics" class="sec">
+<section id="metrics" class="sec animate-sec">
   <div class="sec-label">Campaign Overview</div>
   <div class="sec-title">Results by the Numbers</div>
   <div class="metrics-grid">
@@ -342,28 +339,26 @@ footer{
 
 <div class="divider"></div>
 
-<!-- CHARTS -->
-<section class="sec" style="padding-top:50px;padding-bottom:36px">
+<section class="sec animate-sec" style="padding-top:60px;padding-bottom:40px">
   <div class="charts-grid">
     <div class="chart-card">
       <div class="ct">Leads by Campaign</div>
       <div class="cs">Top 10 campaigns by lead volume · Aug 2025 – May 2026</div>
-      <div style="position:relative;height:clamp(260px,38vw,340px)">
+      <div style="position:relative;height:320px">
         <canvas id="leadsChart" role="img" aria-label="Horizontal bar chart showing leads per campaign."></canvas>
       </div>
     </div>
     <div class="chart-card">
       <div class="ct">Spend by Brand</div>
       <div class="cs">Budget allocation across developer brands (₹ Lakhs)</div>
-      <div style="position:relative;height:clamp(260px,38vw,340px)">
+      <div style="position:relative;height:320px">
         <canvas id="spendChart" role="img" aria-label="Doughnut chart showing ad spend by developer brand."></canvas>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CAMPAIGNS TABLE -->
-<section id="campaigns" class="sec" style="padding-top:36px">
+<section id="campaigns" class="sec animate-sec" style="padding-top:40px">
   <div class="sec-label">Top Campaigns</div>
   <div class="sec-title">Campaign-wise Performance</div>
   <div class="table-wrap">
@@ -378,15 +373,14 @@ footer{
       <tbody id="tableBody"></tbody>
     </table>
   </div>
-  <p style="font-size:12px;color:var(--muted);margin-top:14px;padding-left:4px">
+  <p style="font-size:12px;color:var(--muted);margin-top:16px;padding-left:4px">
     Period: Aug 2, 2025 – May 8, 2026 · Source: Meta Ads Manager · All campaigns managed at Digibrat Virtual Solutions Pvt. Ltd.
   </p>
 </section>
 
 <div class="divider"></div>
 
-<!-- BRANDS -->
-<section id="brands" class="sec">
+<section id="brands" class="sec animate-sec">
   <div class="sec-label">Developer Brands &amp; Clients</div>
   <div class="sec-title">Projects &amp; Verticals</div>
   <div class="brands-grid">
@@ -413,8 +407,7 @@ footer{
 
 <div class="divider"></div>
 
-<!-- SKILLS -->
-<section id="skills" class="sec">
+<section id="skills" class="sec animate-sec">
   <div class="sec-label">Core Competencies</div>
   <div class="sec-title">Skills &amp; Tools</div>
   <div class="skills-grid">
@@ -476,15 +469,14 @@ footer{
 
 <div class="divider"></div>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="sec">
+<section id="experience" class="sec animate-sec">
   <div class="sec-label">Work History</div>
   <div class="sec-title">Professional Experience</div>
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-date">Aug 2025<br>– Present</div>
       <div class="tl-line"></div>
-      <div>
+      <div class="tl-content">
         <div class="tl-role">Meta Ads Specialist</div>
         <div class="tl-co">Digibrat Virtual Solutions Pvt. Ltd. · Bangalore</div>
         <div class="tl-desc">Managing Meta Ads campaigns for 13+ luxury real estate developer brands — ₹2.00 Cr+ total ad spend across 419 campaigns in 9 months, generating 28,420 leads at ₹705 average CPL for Embassy, Godrej, Sobha, Prestige, Keya, Kohinoor, Puravankara, Mahindra Lifespaces, and more. Build audience frameworks using Lookalike Audiences, interest-based and exclusion targeting. Manage Facebook Pixel and CAPI setup, run A/B tests every 2 weeks, and maintain Looker Studio dashboards for weekly management reviews covering CPL, ROAS, CTR, CPC, and lead quality.</div>
@@ -493,7 +485,7 @@ footer{
     <div class="tl-item">
       <div class="tl-date">Dec 2024<br>– Jul 2025</div>
       <div class="tl-line"></div>
-      <div>
+      <div class="tl-content">
         <div class="tl-role">Performance Marketer &amp; Designer</div>
         <div class="tl-co">Radiant Kaira – Skyrise Developers · Bangalore</div>
         <div class="tl-desc">Managed Meta Ads for luxury residential projects — campaign setup, audience strategy, daily optimisation, and lead delivery. Built separate audience segments for NRI and local HNI buyers with tailored creatives and CTAs. Improved workable lead ratio from 45% to 62% through exclusion targeting and interest-based segmentation. Managed bid strategies: Cost Cap for lead quality, Lowest Cost for scale, Bid Cap for budget-sensitive phases.</div>
@@ -502,7 +494,7 @@ footer{
     <div class="tl-item">
       <div class="tl-date">Jan 2023<br>– Nov 2024</div>
       <div class="tl-line"></div>
-      <div>
+      <div class="tl-content">
         <div class="tl-role">Social Media &amp; Ads Executive</div>
         <div class="tl-co">Building Ghar – Nirman Builders · India</div>
         <div class="tl-desc">Ran Meta Ads campaigns for real estate lead generation targeting regional and pan-India audiences. Built Lookalike Audiences to reach NRI investors and high-net-worth buyers. Reduced CPL by 15% in 3 months through audience refinement, exclusion targeting, and creative rotation. Executed retargeting campaigns for website visitors, video viewers, and lead form engagers. Tracked daily performance in Meta Ads Manager and GA4; shifted budgets based on CPL and CTR signals.</div>
@@ -513,11 +505,10 @@ footer{
 
 <div class="divider"></div>
 
-<!-- CERTIFICATIONS & EDUCATION -->
-<section class="sec" style="padding-top:50px;padding-bottom:60px">
+<section class="sec animate-sec" style="padding-top:60px;padding-bottom:80px">
   <div class="ce-grid">
     <div>
-      <div class="sec-label" style="margin-bottom:8px">Certifications</div>
+      <div class="sec-label" style="margin-bottom:12px">Certifications</div>
       <div class="ce-card">
         <div class="ce-icon">M</div>
         <div><div class="ce-name">Meta Blueprint – Digital Marketing Associate</div><div class="ce-sub">Meta · 2023</div></div>
@@ -532,16 +523,16 @@ footer{
       </div>
     </div>
     <div>
-      <div class="sec-label" style="margin-bottom:8px">Education &amp; Languages</div>
+      <div class="sec-label" style="margin-bottom:12px">Education &amp; Languages</div>
       <div class="ce-card" style="flex-direction:column;align-items:flex-start;gap:6px">
         <div class="ce-name">Bachelor of Commerce (B.Com)</div>
         <div class="ce-sub">VBSPU University, Uttar Pradesh · 2016 – 2018</div>
       </div>
-      <div class="ce-card" style="flex-direction:column;align-items:flex-start;gap:10px">
-        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Languages</div>
+      <div class="ce-card" style="flex-direction:column;align-items:flex-start;gap:12px">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500">Languages</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span style="padding:5px 13px;border:1px solid rgba(201,168,76,0.3);border-radius:100px;font-size:12px;color:var(--gold)">Hindi (Native)</span>
-          <span style="padding:5px 13px;border:1px solid var(--border);border-radius:100px;font-size:12px">English (Professional)</span>
+          <span style="padding:6px 14px;border:1px solid rgba(201,168,76,0.3);border-radius:100px;font-size:12px;color:var(--gold-light);background:var(--gold-dim)">Hindi (Native)</span>
+          <span style="padding:6px 14px;border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--muted)">English (Professional)</span>
         </div>
       </div>
     </div>
@@ -564,23 +555,81 @@ footer{
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-/* ── Hamburger ── */
+/* ── Smooth Scroll Integration (Lenis) ── */
+const lenis = new Lenis();
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* ── Menu & Responsive Toggle ── */
 const ham = document.getElementById('ham');
 const mm  = document.getElementById('mobileMenu');
 ham.addEventListener('click', () => {
   ham.classList.toggle('open');
   mm.classList.toggle('open');
-  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
 });
 document.querySelectorAll('.mm-link').forEach(a => {
   a.addEventListener('click', () => {
     ham.classList.remove('open');
     mm.classList.remove('open');
-    document.body.style.overflow = '';
   });
 });
 
-/* ── Campaign Data (Top 20 by Spend · Aug 2, 2025 – May 8, 2026) ── */
+/* ── Smart Hide Navbar on Downscroll ── */
+let lastScrollTop = 0;
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop && scrollTop > 100) {
+    navbar.style.transform = "translateY(-100%)";
+  } else {
+    navbar.style.transform = "translateY(0)";
+  }
+  lastScrollTop = scrollTop;
+});
+
+/* ── GSAP Dynamic Scroll Animations ── */
+gsap.registerPlugin(ScrollTrigger);
+
+const tl = gsap.timeline();
+tl.from(".hero-left > *", { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, ease: "power4.out" })
+  .from(".hero-card", { opacity: 0, scale: 0.95, duration: 1, ease: "power3.out" }, "-=0.6")
+  .call(() => {
+     // Dynamic Number Counter Ticking Setup
+     document.querySelectorAll('.count').forEach(el => {
+       const target = parseFloat(el.getAttribute('data-target'));
+       const isFloat = el.getAttribute('data-target').includes('.');
+       gsap.to(el, {
+         innerText: target,
+         duration: 2,
+         ease: "power2.out",
+         snap: { innerText: isFloat ? 0.01 : 1 },
+         onUpdate: function() {
+           if(isFloat) el.innerText = parseFloat(el.innerText).toFixed(2);
+           else el.innerText = Math.floor(el.innerText).toLocaleString('en-IN');
+         }
+       });
+     });
+  });
+
+// Fluid Section Reveal Triggers
+document.querySelectorAll('.animate-sec').forEach(sec => {
+  gsap.from(sec, {
+    opacity: 0,
+    y: 40,
+    duration: 1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: sec,
+      start: "top 82%",
+      toggleActions: "play none none none"
+    }
+  });
+});
+
+/* ── Data Core Structures ── */
 const campaigns = [
   {name:"The Lake Terraces", spend:644031, leads:1375, cpl:468, reach:1448456, imp:4384153, ctr:0.35},
   {name:"TLT 2 BHK", spend:479862, leads:407, cpl:1179, reach:2142714, imp:7431656, ctr:0.60},
@@ -604,7 +653,6 @@ const campaigns = [
   {name:"TLT Inhouse 3.5BHK", spend:176746, leads:85, cpl:2079, reach:241528, imp:576477, ctr:0.51},
 ];
 
-/* ── Brand Spend Data (₹ Lakhs) ── */
 const brandSpend = [
   {name:"Keya Homes",        spend:253.3},
   {name:"Godrej Properties", spend:228.0},
@@ -621,10 +669,10 @@ const fmtI = n => n.toLocaleString('en-IN');
 const fmtS = n => n>=1e7?'₹'+(n/1e7).toFixed(2)+' Cr':n>=1e5?'₹'+(n/1e5).toFixed(1)+'L':'₹'+fmtI(Math.round(n));
 const cplCls = v => v<600?'cpl-low':v<1200?'cpl-mid':'cpl-hi';
 
-/* ── Table ── */
+/* ── Native Indian Formatting Data Injection ── */
 const tbody = document.getElementById('tableBody');
 [...campaigns].sort((a,b)=>b.leads-a.leads).forEach((a,i)=>{
-  const bw = Math.max(3, Math.round((a.leads/maxL)*80));
+  const bw = Math.max(3, Math.round((a.leads/maxL)*100));
   tbody.innerHTML+=`<tr>
     <td class="td-r">${i+1}</td>
     <td class="td-n">${a.name}</td>
@@ -637,20 +685,20 @@ const tbody = document.getElementById('tableBody');
   </tr>`;
 });
 
-/* ── Charts ── */
+/* ── Premium Styled Chart Rendering ── */
 const top10 = [...campaigns].sort((a,b)=>b.leads-a.leads).slice(0,10);
 new Chart(document.getElementById('leadsChart'),{
   type:'bar',
   data:{
-    labels:top10.map(a=>a.name.length>18?a.name.slice(0,18)+'…':a.name),
-    datasets:[{label:'Leads',data:top10.map(a=>a.leads),backgroundColor:'rgba(201,168,76,0.75)',borderColor:'#C9A84C',borderWidth:1,borderRadius:4}]
+    labels:top10.map(a=>a.name.length>16?a.name.slice(0,16)+'…':a.name),
+    datasets:[{label:'Leads',data:top10.map(a=>a.leads),backgroundColor:'rgba(201,168,76,0.85)',borderColor:'#C9A84C',borderWidth:1,borderRadius:6,barPercentage:0.65}]
   },
   options:{
     indexAxis:'y',responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false}},
     scales:{
-      x:{grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#8A877F',font:{size:10},callback:v=>v.toLocaleString('en-IN')}},
-      y:{grid:{display:false},ticks:{color:'#F0EDE8',font:{size:10}}}
+      x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#94918B',font:{size:11},callback:v=>v.toLocaleString('en-IN')}},
+      y:{grid:{display:false},ticks:{color:'#F3F1ED',font:{size:11}}}
     }
   }
 });
@@ -661,21 +709,20 @@ new Chart(document.getElementById('spendChart'),{
     labels:brandSpend.map(b=>b.name),
     datasets:[{
       data:brandSpend.map(b=>b.spend),
-      backgroundColor:['#C9A84C','#E8C97A','#A0823C','#6E5A29','#3DCFB6','#2DA894','#8E7250','#555'],
-      borderColor:'#141416',borderWidth:2
+      backgroundColor:['#C9A84C','#E8C97A','#BA9940','#8A6F2D','#3DCFB6','#2CA894','#A38A68','#44444A'],
+      borderColor:'#121214',borderWidth:3
     }]
   },
   options:{
     responsive:true,maintainAspectRatio:false,
     plugins:{
       legend:{
-        display:true,
         position:'right',
-        labels:{color:'#8A877F',font:{size:10},boxWidth:10,padding:8}
+        labels:{color:'#94918B',font:{size:11},boxWidth:12,padding:12}
       },
-      tooltip:{callbacks:{label:ctx=>`₹${ctx.parsed.toFixed(1)}L`}}
+      tooltip:{callbacks:{label:ctx=>` ₹${ctx.parsed.toFixed(1)} Lakhs`}}
     },
-    cutout:'60%'
+    cutout:'68%'
   }
 });
 </script>
